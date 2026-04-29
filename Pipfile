@@ -7,9 +7,9 @@ name = "pypi"
 psycopg2-binary = "*"
 autopep8 = "*"
 django-environ = "*"
-django = "*"
-djangorestframework = "*"
 djangorestframework-simplejwt = "*"
+djangorestframework = "*"
+django = "*"
 
 [dev-packages]
 
