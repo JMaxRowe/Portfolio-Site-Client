@@ -36,3 +36,15 @@ class ProjectDetailView(APIView):
         project = self.get_project(slug)
         serialized_project = ProjectSerializer(project)
         return Response(serialized_project.data)
+    
+    def patch(self, request, slug):
+        project = self.get_project(slug)
+        serialized_project = ProjectSerializer(project, data=request.data, partial=True)
+        serialized_project.is_valid(raise_exception=True)
+        serialized_project.save()
+        return Response(serialized_project.data)
+    
+    def delete(self, request, slug):
+        project = self.get_project(slug)
+        project.delete()
+        return Response(status=204)
