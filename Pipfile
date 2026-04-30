@@ -10,6 +10,7 @@ django-environ = "*"
 djangorestframework-simplejwt = "*"
 djangorestframework = "*"
 django = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
