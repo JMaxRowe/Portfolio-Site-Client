@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Project
-from .serializers.common import ProjectSerializer
+from .models import Project, Tag, Role
+from .serializers.common import ProjectSerializer, TagSerializer, RoleSerializer
 from rest_framework import permissions
 from rest_framework.exceptions import NotFound
 
@@ -48,3 +48,15 @@ class ProjectDetailView(APIView):
         project = self.get_project(slug)
         project.delete()
         return Response(status=204)
+    
+class TagListView(APIView):
+    def get(self, request):
+        tags = Tag.objects.all()
+        serialized_tags = TagSerializer(tags, many=True)
+        return Response(serialized_tags.data)
+
+class RoleListView(APIView):
+    def get(self, request):
+        roles = Role.objects.all()
+        serialized_roles = RoleSerializer(roles, many=True)
+        return Response(serialized_roles.data)
