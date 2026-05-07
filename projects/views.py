@@ -4,6 +4,7 @@ from .models import Project, Tag, Role
 from .serializers.common import ProjectSerializer, TagSerializer, RoleSerializer
 from rest_framework import permissions
 from rest_framework.exceptions import NotFound
+from rest_framework.permissions import AllowAny
 
 
 
@@ -50,12 +51,14 @@ class ProjectDetailView(APIView):
         return Response(status=204)
     
 class TagListView(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         tags = Tag.objects.all()
         serialized_tags = TagSerializer(tags, many=True)
         return Response(serialized_tags.data)
 
 class RoleListView(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         roles = Role.objects.all()
         serialized_roles = RoleSerializer(roles, many=True)
